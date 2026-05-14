@@ -50,30 +50,34 @@ TURMA_OPTIONS = [
 
 SCHEDULE_OPTIONS = {
     "1": {"dias_aula": "Segunda e Quarta", "horario": "09h até 11h"},
-    "2": {"dias_aula": "Terça e Quinta", "horario": "19h até 21h"},
+    "2": {"dias_aula": "Terça e Quinta",   "horario": "19h até 21h"},
     "3": {"dias_aula": "Segunda e Quarta", "horario": "13h até 15h"},
-    "4": {"dias_aula": "Terça e Quinta", "horario": "09h até 11h"},
+    "4": {"dias_aula": "Terça e Quinta",   "horario": "09h até 11h"},
     "5": {"dias_aula": "Segunda e Quarta", "horario": "19h até 21h"},
-    "6": {"dias_aula": "Terça e Quinta", "horario": "13h até 15h"},
+    "6": {"dias_aula": "Terça e Quinta",   "horario": "13h até 15h"},
 }
 
+# ──────────────────────────────────────────────
+# DATAS ATUALIZADAS  (maio → junho 2026)
+# ──────────────────────────────────────────────
 START_DATE_OPTIONS = {
-    "1": "11/04/2026",
-    "2": "12/04/2026",
-    "3": "11/04/2026",
-    "4": "12/04/2026",
-    "5": "11/04/2026",
-    "6": "12/04/2026",
+    "1": "11/05/2026",
+    "2": "12/05/2026",
+    "3": "11/05/2026",
+    "4": "12/05/2026",
+    "5": "11/05/2026",
+    "6": "12/05/2026",
 }
 
 END_DATE_OPTIONS = {
-    "1": "06/05/2026",
-    "2": "14/05/2026",
-    "3": "06/05/2026",
-    "4": "14/05/2026",
-    "5": "06/05/2026",
-    "6": "14/05/2026",
+    "1": "10/06/2026",
+    "2": "11/06/2026",
+    "3": "10/06/2026",
+    "4": "11/06/2026",
+    "5": "10/06/2026",
+    "6": "11/06/2026",
 }
+# ──────────────────────────────────────────────
 
 ADDRESS_OPTIONS = {
     "1": "Rua Um, SN, Bairro Maré - CEP 21.042-510",
@@ -2690,10 +2694,7 @@ def confirmacao():
 
 
 # --- SUPABASE ENDPOINT E FUNÇÕES ---
-import os
-import re
-import requests
-from datetime import datetime
+import requests as _requests
 
 SUPABASE_FUNCTION_URL = os.environ.get(
     "SUPABASE_FUNCTION_URL",
@@ -2729,7 +2730,7 @@ def send_registration_to_supabase(form_data):
         "x-api-key": SUPABASE_API_KEY,
         "Authorization": f"Bearer {SUPABASE_API_KEY}",
     }
-    response = requests.post(SUPABASE_FUNCTION_URL, headers=headers, json=payload, timeout=10)
+    response = _requests.post(SUPABASE_FUNCTION_URL, headers=headers, json=payload, timeout=10)
     if not response.ok:
         raise RuntimeError(
             f"Supabase retornou {response.status_code}: {response.text[:500]}"
